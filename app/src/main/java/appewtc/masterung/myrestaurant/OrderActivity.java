@@ -2,6 +2,8 @@ package appewtc.masterung.myrestaurant;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -33,7 +35,7 @@ public class OrderActivity extends AppCompatActivity {
 
     private void showSpinner() {
 
-        String[] strDesk = new String[10];
+        final String[] strDesk = new String[10];
         strDesk[0] = "A1";
         strDesk[1] = "A2";
         strDesk[2] = "A3";
@@ -50,7 +52,17 @@ public class OrderActivity extends AppCompatActivity {
                 strDesk);
         deskSpinner.setAdapter(deskAdapter);
 
+        deskSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                deskString = strDesk[i];
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                deskString = strDesk[0];
+            }
+        });
 
     }
 
