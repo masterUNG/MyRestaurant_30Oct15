@@ -31,7 +31,22 @@ public class OrderActivity extends AppCompatActivity {
         //Show Spinner
         showSpinner();
 
+        //Show ListView
+        showListView();
+
     }   // Main Method
+
+    private void showListView() {
+
+        ManageTABLE objManageTABLE = new ManageTABLE(this);
+        String[] strFood = objManageTABLE.readAllData(1);
+        String[] strSource = objManageTABLE.readAllData(2);
+        String[] strPrice = objManageTABLE.readAllData(3);
+
+        MyAdapter objMyAdapter = new MyAdapter(OrderActivity.this, strSource, strFood, strPrice);
+        foodListView.setAdapter(objMyAdapter);
+
+    }
 
     private void showSpinner() {
 
